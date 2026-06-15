@@ -1,0 +1,190 @@
+vboxuser@UbuntuFMI:~$ cd ubb/itbi/
+vboxuser@UbuntuFMI:~/ubb/itbi$ chmod u+x myscript
+chmod: cannot access 'myscript': No such file or directory
+vboxuser@UbuntuFMI:~/ubb/itbi$ mkdir myscript
+vboxuser@UbuntuFMI:~/ubb/itbi$ chmod u+x myscript
+vboxuser@UbuntuFMI:~/ubb/itbi$ ./myscript/
+bash: ./myscript/: Is a directory
+vboxuser@UbuntuFMI:~/ubb/itbi$ nano myscript
+vboxuser@UbuntuFMI:~/ubb/itbi$ touch fisier.sh
+vboxuser@UbuntuFMI:~/ubb/itbi$ which sh
+/usr/bin/sh
+vboxuser@UbuntuFMI:~/ubb/itbi$ ./fisier.sh
+bash: ./fisier.sh: Permission denied
+vboxuser@UbuntuFMI:~/ubb/itbi$ chmod u+x fisier.sh
+vboxuser@UbuntuFMI:~/ubb/itbi$ ./fisier.sh
+vboxuser@UbuntuFMI:~/ubb/itbi$ chmod u+x fisier.sh
+vboxuser@UbuntuFMI:~/ubb/itbi$ ./fisier.sh
+vboxuser@UbuntuFMI:~/ubb/itbi$ sudo ./fisier.sh
+[sudo] password for vboxuser: 
+vboxuser@UbuntuFMI:~/ubb/itbi$ /bin/sh ./fisier.sh
+vboxuser@UbuntuFMI:~/ubb/itbi$ /bin/bash .fisier.sh
+/bin/bash: .fisier.sh: No such file or directory
+vboxuser@UbuntuFMI:~/ubb/itbi$ /bin/sh ./fisier.sh
+vboxuser@UbuntuFMI:~/ubb/itbi$ nano fisier.sh
+vboxuser@UbuntuFMI:~/ubb/itbi$ fisier.sh
+fisier.sh: command not found
+vboxuser@UbuntuFMI:~/ubb/itbi$ ./fisier.sh 
+Hello scripting world!
+vboxuser@UbuntuFMI:~/ubb/itbi$ type test
+test is a shell builtin
+
+// 
+
+vboxuser@UbuntuFMI:~$ pw
+dpw: command not found
+vboxuser@UbuntuFMI:~$ pwd
+/home/vboxuser
+vboxuser@UbuntuFMI:~$ type test
+test is a shell builtin
+vboxuser@UbuntuFMI:~$ type [
+[ is a shell builtin
+vboxuser@UbuntuFMI:~$ type type
+type is a shell builtin
+vboxuser@UbuntuFMI:~$ X=4
+vboxuser@UbuntuFMI:~$ [ "$X" -lt "0" ] && echo "X is less than zero" \> || echo "X is greater than zero"
+X is greater than zero
+vboxuser@UbuntuFMI:~$ X=-1
+vboxuser@UbuntuFMI:~$ [ "$X" -lt "0" ] && echo "X is less than zero" \> || echo "X is greater than zero"
+X is less than zero >
+vboxuser@UbuntuFMI:~$ X=0
+vboxuser@UbuntuFMI:~$ [ "$X" = "0" ] && \> echo "X is the string or number \"0\""
+>: command not found
+vboxuser@UbuntuFMI:~$ X=hello
+vboxuser@UbuntuFMI:~$ [ "&X" = "hello" ] && \> echo "X matches the string \"hello\""
+vboxuser@UbuntuFMI:~$ exho $x
+Command 'exho' not found, did you mean:
+  command 'exo' from snap exoscale-cli (v1.22.2)
+  command 'echo' from deb coreutils (9.4-2ubuntu2)
+See 'snap info <snapname>' for additional versions.
+vboxuser@UbuntuFMI:~$ echo $x
+
+vboxuser@UbuntuFMI:~$ echo $X
+hello
+vboxuser@UbuntuFMI:~$ X="not hello"
+vboxuser@UbuntuFMI:~$ [ "&X" != "hello" ] && echo "X is not the string \"hello\""
+X is not the string "hello"
+vboxuser@UbuntuFMI:~$ echo $X
+not hello
+vboxuser@UbuntuFMI:~$ [-n "$X"] && echo "X is of nonzero length"
+[-n: command not found
+vboxuser@UbuntuFMI:~$ [ -n "$X" ] && echo "X is of nonzero length"
+X is of nonzero length
+vboxuser@UbuntuFMI:~$ X=somefile
+vboxuser@UbuntuFMI:~$ [ -f "$X" ] && \> echo "X is the path of a real file" || \> echo "No such file: $X"
+>: command not found
+vboxuser@UbuntuFMI:~$ X=/etc/paswd
+vboxuser@UbuntuFMI:~$ X=/etc/passwd
+vboxuser@UbuntuFMI:~$ echo $X
+/etc/passwd
+vboxuser@UbuntuFMI:~$ [ -f "$X" ] && \> echo "X is the path of a real file" || \> echo "No such file: $X"
+>: command not found
+>: command not found
+vboxuser@UbuntuFMI:~$ X=/bin/ls
+vboxuser@UbuntuFMI:~$ [ -x "$X" ] && echo "X is the path of an executable file"
+X is the path of an executable file
+vboxuser@UbuntuFMI:~$ x=.
+vboxuser@UbuntuFMI:~$ [ "$x" -nt "/etc/passwd" ] && \> echo "X is a file which is newer than /etc/passwd"
+>: command not found
+vboxuser@UbuntuFMI:~$ x=hello
+vboxuser@UbuntuFMI:~$ [ -n "$x" ] && echo "$x is a non-zero string" \> || echo "$x is the null string"
+hello is a non-zero string >
+vboxuser@UbuntuFMI:~$ Y=bye
+vboxuser@UbuntuFMI:~$ [$X != $Y] && echo "$X is not equal to $Y" \> || echo "$X is equal to $Y"
+bash: [/bin/ls: No such file or directory
+/bin/ls is equal to bye
+vboxuser@UbuntuFMI:~$ echo $X
+/bin/ls
+vboxuser@UbuntuFMI:~$ X=hello
+vboxuser@UbuntuFMI:~$ echo $X
+hello
+vboxuser@UbuntuFMI:~$ [ ! "$X" = "" ] && echo "$X is not an empty string" \> || echo "$X is the empty string"
+hello is not an empty string >
+vboxuser@UbuntuFMI:~$ [ ! "$X" = "" ] && echo "$X is not an empty string" \
+> || echo "$X is the empty string"
+hello is not an empty string
+vboxuser@UbuntuFMI:~$ echo $X $Y
+hello bye
+vboxuser@UbuntuFMI:~$ [ "$X" = "hello" -a "$Y" = "bye" ] && \
+> echo "Proper greetings have been made" \
+> || echo "This is not quite polite"
+Proper greetings have been made
+vboxuser@UbuntuFMI:~$ Y=notbye
+vboxuser@UbuntuFMI:~$ echo $X $Y
+hello notbye
+vboxuser@UbuntuFMI:~$ [ "$X" != "hello" -o "$Y" != "bye" ] && \
+> echo "This is not quite polite"\
+> || echo "Politeness has been satisfied"
+This is not quite polite
+vboxuser@UbuntuFMI:~$ ./if.sh
+bash: ./if.sh: No such file or directory
+vboxuser@UbuntuFMI:~$ touch case.sh
+vboxuser@UbuntuFMI:~$ delete case.sh
+delete: command not found
+vboxuser@UbuntuFMI:~$ cd ./ubb/itbi/
+vboxuser@UbuntuFMI:~/ubb/itbi$ mkdir lab5
+vboxuser@UbuntuFMI:~/ubb/itbi$ cd lab5/
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ touch case.sh
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ nano case.sh
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ ./case.sh
+bash: ./case.sh: Permission denied
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ chmod u+x case.sh
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ ./case.sh
+Please input a filename: /etc
+Sorry, I don't know anything about /etc
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ ./case.sh
+Please input a filename: /etc/passwd
+Sorry, I don't know anything about /etc/passwd
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ ./case.sh
+Please input a filename: /dev/tty1
+Sorry, I don't know anything about /dev/tty1
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ ./case.sh
+Please input a filename: a
+Sorry, I don't know anything about a
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ nano case.sh
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ touch myfor-loop.sh
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ nano myfor-loop.sh 
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ chmod u+x myfor-loop.sh 
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ ./myfor-loop.sh 
+Iteratia cu numarul 1
+Iteratia cu numarul 2
+Iteratia cu numarul 3
+Iteratia cu numarul 4
+Iteratia cu numarul 5
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ touch while.sh
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ nano while.sh
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ chmod u+x while.sh 
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ ./while.sh 
+Introduceti date (bye pentru a iesi din bucla)
+da
+Ati introdus: da
+Introduceti date (bye pentru a iesi din bucla)
+sar
+Ati introdus: sar
+Introduceti date (bye pentru a iesi din bucla)
+by
+Ati introdus: by
+Introduceti date (bye pentru a iesi din bucla)
+bye
+Ati introdus: bye
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ touch while2.sh
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ nano while2.sh
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ chmod u+x while2.sh 
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ ./while2.sh
+Introduceti date (CTRL-C pentru a iesi din bucla)
+da
+Ati introdus: da
+Introduceti date (CTRL-C pentru a iesi din bucla)
+dfa
+Ati introdus: dfa
+Introduceti date (CTRL-C pentru a iesi din bucla)
+^C
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ touch while3.sh
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ nano while3.sh
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ chmod u+x while3.sh
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ ./while3.sh
+Please input a filename: /etc
+Sorry, I don't know anything about /etc
+Please input a filename: ^C
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ touch param.sh
+vboxuser@UbuntuFMI:~/ubb/itbi/lab5$ nano pa

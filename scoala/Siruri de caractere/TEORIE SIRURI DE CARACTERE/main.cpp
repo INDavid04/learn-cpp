@@ -1,0 +1,40 @@
+/******************************************************************************
+
+    strlen (sir) intoarce numarul de elemente al sirului, de exeplu: strlen("carte")=5
+
+    Un sir de caractere se DECLARA ca un vector (char s[9]) si se poate CITI/AFISA astfel:
+        cin >> s; .......... cout << s;
+        scanf ("%s", s); ... printf();
+        gets (s); .......... puts (s);
+    
+    strcat(sir1, sir2) ....... strcat("da", "none") = "danone"
+    strncat(sir1, sir2, n) ... strncat("merge", bine, 3) = "mergebin"
+    
+    strcmp(sir1, sir2) ........ strcmp("A", "B") = -1; strcmp("A", "B") = 1; strcmp("A", "A") = 0. In general daca sirurile sunt diferite si primul e mai mare ca al doilea rezultatul e strict pozitiv. In caz contrar e negativ. Aceasta functie, de fapt, scade primele cifrele.
+    strncmp(sir1, sir2, n) .... 
+    stricmp(sir1, sir2) ....... stricmp("ALIN", "alin") = 0. Nu se mai ia in calcul daca e majuscula ca in cazul lui strcmp.
+    strincmp(sir1, sir2, n) ... 
+    
+    strchr(sir1, c) ........... strchr("BARCA", "A") = "ARCA". Cauta caracterul c in sirul respectiv.
+    
+    strstr(sir1, sir2) ........ strstr("bacalaureat", "cala") = "calaureat" 
+    
+    strcpy(sir1, sir2) ........ strcpy(sir, "laptop"); sirul copiaza valoarea sirului de caractere "laptop"
+
+*******************************************************************************/
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+int main(){
+    char sir[10];
+    strcpy(sir, "laptop");
+    cout << sir;
+    
+    return 0;
+}
+
+
+
+

@@ -1,0 +1,75 @@
+comezi_de_baza {
+    use baza /// folosim baza de date baza
+    list /// afisam tabelul
+    list nume, absn /// afiseaza coloanele nume, absn
+    list nume for absn > 30 /// afiseaaza cine are absn > 30
+    chage/browse /// completeaza tabelul
+    modi stru /// modifica baza de date
+    use /// anuleaza baza
+    delete for sustr(nume, 1, 1) = "P" /// pune * in dreptul numelor care incep cu "P"
+    pack /// abia acum le sterge fizic, delete for substr(nume, 1 , 1) = "P" doar marcheaza
+}
+
+sortare {
+    sort to sort_f on camp1[/A][/D][/C], [camp2][/A][/D][/C]
+    /A, /D, /C - ascendent, descendent, fara a tine cont de valoare (aA)
+    
+    /// Exemplu
+    sort to rezultata on salariu /D
+    sort to rezultat1 on salariu /D, varsta /A
+}
+
+replicarea {
+    replace  campl with exp1 [domeniu][for cond1][while cond2]
+    
+    /// Exemplu
+    replace all media with (nota1 + nota2)/2
+    list
+    
+    /// Modificarea salaiului de 4000 pentru soferi
+    use angajat
+    go top
+    replace salariu with 4000 for functie="Sofer"
+}
+
+Prelucrari statistice asupra bazelor de date {
+    1. Numararea articolelor {
+        COUNT [<domeniu>][FOR <expresie1>][WHILE <expresie2>][TO <variabila>]
+
+        Ex1: Sa se afiseze numarul produselor din cadrul unui depozit, a caror valoare depaseste 100 de lei. Baza de
+        date "situatia.dbf" are urmatoarea strucutra: denumire (0, 10), nrinv(N, 3), descriere(memo), valoare(N, 7)
+        
+        use situatia
+        count for valoare > 100 to nr
+        ? 'in baza de date avem ', nr, 'produse cu valoarea mai mare de 100 de lei'
+    }
+    
+    
+    2. Insumarea valorilor unor campuri numerice {
+        SUM[<lista_expresii>][<domeniu>][FOR<exprL1>][WHILE<exprL2>][TO <lista_variabile>]
+    
+    EX1: Pentru baza de date "elevi.dbf" cu campurile: nume, clasa, absn, absm:
+        a) Numarul total de absente nemotivate de la clasa a XIIA
+            SUM absn for clasa = "XIIA" to x
+            ? 'Elevii clasei a XIIA ai in numar de ', x, 'absente nemotivate'
+        b) Numarul total de absente de la clasa a XIIA
+            SUM absn+absm for clasa = "XIIA" to v
+            ? 'numarul total de absente este', v
+            
+        Putem folosi sum si fara o conditie, de ex:
+            sum pret to p /// aduna toate preturile de pe coloana pret
+    }
+
+            
+    3. Calcularea mediei aritmetice
+    average absn for clasa = "XIIA" to x /// average = media aritmetica
+    ? 'Media absentelor nemotivate de la XIIA este ', x
+    
+    4. Calcule financiare si statistice
+        1. AVG -> media aritmetica
+        2. CNT -> numara articole
+        3. SUM -> insumeaza valorile
+        4. MAX/MIN -> extrage cea mai mare/cea mai mica valoare a expresiei calculata
+        5. STD(<expn>) -> calculeaza deviatia standard a valorilor lui expn
+        6. VAR(<expn>) -> calculeaza abaterea patratica medie (deviatia standard la patrat)
+}

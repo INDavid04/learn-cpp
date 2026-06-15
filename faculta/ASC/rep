@@ -1,0 +1,132 @@
+; Suma primelor n numere
+.data
+	n: .long 10
+
+.text
+
+.globl _start
+
+_start:
+	mov $0, %eax
+	mov $0, %ecx
+	
+et_for:
+	cmp n, %ecx
+	je etexit
+	add %ecx, %eax
+	inc %ecx
+	jmp et_for
+
+etexit:
+	mov $1, %eax
+	mov $0, %ebx
+	int $0x80
+	
+; Suma primelor n numere cu loop
+.data
+	n: .long 10
+.text
+.globl _start
+_start:
+    mov n, %ecx
+    dec %ecx
+et_rep_loop:
+    add %ecx, %eax
+    loop et_rep_loop
+etexit:
+	mov $1, %eax
+	mov $0, %ebx
+	int $0x80
+
+; Terminal
+vboxuser@UbuntuFMI:~$ cd ./ubb/asc
+bash: cd: ./ubb/asc: No such file or directory
+vboxuser@UbuntuFMI:~$ cd ./ubb/asc/
+bash: cd: ./ubb/asc/: No such file or directory
+vboxuser@UbuntuFMI:~$ cd ./ubb/asc/
+vboxuser@UbuntuFMI:~/ubb/asc$ touch rep.asm
+vboxuser@UbuntuFMI:~/ubb/asc$ open rep.asm
+vboxuser@UbuntuFMI:~/ubb/asc$ MESA: error: ZINK: failed to choose pdev
+libEGL warning: egl: failed to create dri2 screen
+
+(gnome-text-editor:2838): Gtk-WARNING **: 15:15:46.032: Trying to snapshot GtkGizmo 0x58b44872ab60 without a current allocation
+q
+Command 'q' not found, but can be installed with:
+sudo snap install q                       # version 1.6.3-1, or
+sudo apt  install python3-q-text-as-data  # version 3.1.6-3
+See 'snap info q' for additional versions.
+vboxuser@UbuntuFMI:~/ubb/asc$ as --32 rep.asm -o rep.o
+vboxuser@UbuntuFMI:~/ubb/asc$ ld -m elf_i386 rep.o -o rep
+vboxuser@UbuntuFMI:~/ubb/asc$ gdb rep
+GNU gdb (Ubuntu 15.0.50.20240403-0ubuntu1) 15.0.50.20240403-git
+Copyright (C) 2024 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from rep...
+(No debugging symbols found in rep)
+(gdb) b et exit
+Function "et exit" not defined.
+Make breakpoint pending on future shared library load? (y or [n]) y
+Breakpoint 1 (et exit) pending.
+(gdb) i r
+The program has no registers now.
+(gdb) run
+Starting program: /home/vboxuser/ubb/asc/rep 
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) y
+Debuginfod has been enabled.
+To make this setting permanent, add 'set debuginfod enabled on' to .gdbinit.
+[Inferior 1 (process 2932) exited normally]
+(gdb) i r
+The program has no registers now.
+(gdb) stepi
+The program is not being run.
+(gdb) run
+Starting program: /home/vboxuser/ubb/asc/rep 
+[Inferior 1 (process 2936) exited normally]
+(gdb) stepi
+The program is not being run.
+(gdb) b etexit
+Breakpoint 2 at 0x8049017
+(gdb) run
+Starting program: /home/vboxuser/ubb/asc/rep 
+
+Breakpoint 2, 0x08049017 in etexit ()
+(gdb) i r
+eax            0x2d                45
+ecx            0xa                 10
+edx            0x0                 0
+ebx            0x0                 0
+esp            0xffffd050          0xffffd050
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x8049017           0x8049017 <etexit>
+eflags         0x246               [ PF ZF IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) 1
+Undefined command: "1".  Try "help".
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 2952] will be killed.
+
+Quit anyway? (y or n) y

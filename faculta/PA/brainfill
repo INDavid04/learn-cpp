@@ -1,0 +1,19 @@
+ # Bucla for -> Exercițiul 1: Afișează numerele pare de la 2 la 10. Scrie un program care afișează numerele pare între 2 și 10.
+for i in range (1, 6):
+    print(2*i, " ");
+    
+# Bucla for -> Exercițiul 2: Afișează un mesaj personalizat de 4 ori: Scrie un program care cere utilizatorului să introducă un mesaj și apoi îl afișează de 4 ori.
+mesaj = input("Introduceti mesajul pe care sa il afisam de patru ori: ");
+for i in range(4):
+    print(mesaj);
+    
+# Bucla while -> Exercițiul 1: Numărătoare inversă: Scrie un program care afișează numerele de la 5 la 1 folosind bucla while.
+contor = 5;
+while contor > 0:
+    print(contor);
+    contor -= 1;
+    
+# Bucla while -> Exercițiul 2: Parolă Secretă: Cere utilizatorului să introducă parola "python123". Continuă să ceri parola până când utilizatorul o introduce corect.
+parola = "corecta"
+while (parola != "python123"):
+    parola = input("Introduceti parola: ");

@@ -1,0 +1,14 @@
+72
+10
+/*
+int main() {
+    unsigned int N, M, kite, anotherKite;
+    ifstream fin("zmeu.in");
+    ofstream fout("zmeu.out");
+    fin >> N >> M;
+    Zmeu(N, M, kite, anotherKite);
+    fout << kite << "\n" << anotherKite;
+
+    return 0;
+}
+*/

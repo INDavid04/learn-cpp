@@ -1,0 +1,59 @@
+.data
+	n: .space 4
+	x: .space 4
+	v: .space 400 ; adica v[100]
+	formatScanf: .asciz "%d"
+.text
+.global main
+main:
+    ; Echivalentul cu scanf ("%d, &n")
+	push $n
+	push &formatScanf
+	call scanf
+	pop %ebx
+	pop %ebx
+	
+	mov $v, %edi
+	mov $0, %ecx
+
+et_loop:
+	cmp n, %ecx
+	je et_exit
+	push %ecx
+	push $x
+	push $formatScanf
+	call scanf
+	pop %ebx
+	pop %ebx
+	
+	mov x, (%edi, %ecx, 4)
+	inc ecx
+	jmp et_loop
+	
+; @TODO: vezi ce face codul de mai jos
+.data
+    str: .asciz "Acesta este un sir de caractere pentru a numara cate caractere spatiu avem!\n"
+.text 
+.global main 
+main: 
+    mov $str, %esi 
+    mov $0, %ecx 
+    mov $0, %ebx
+    # contorizam numarul de spatii in ebx, nu eax pentru ca il folosim pentru a parcurge vectorul
+et_loop:
+    movb (%esi, %ecx, 1), %al 
+    cmp $0, %al 
+    je et_exit 
+    # altfel, sunt inca in structura repetitiva 
+    cmp $' ', %al
+    je is_span
+    inc %ecx 
+    jmp et_loop
+is_span:
+    inc %ebx
+    inc %ecx
+    jmp et_loop
+et_exit:
+    mov $1, %eax 
+    xor %ebx, %ebx 
+    int $0x80 

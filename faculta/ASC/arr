@@ -1,0 +1,86 @@
+; Sa se calculeze suma elementelor din vectorul v
+.data
+  v: .long 5, 10, 25
+  n: .long 3
+
+.text
+
+.globl _start
+
+_start:
+  lea v, %edi
+  // edi retine adresa de inceput a arr
+  
+  mov $0, %eax
+  mov $0, %ecx
+  
+et_for_loop:
+  cmp %ecx, n
+  je et_exit
+  
+  add (%edi, %ecx, 4), %eax
+  inc %ecx
+  jmp et_for_loop
+
+et_exit:
+  mov $1, %eax
+  mov $0, %ebx
+  int $0x80
+
+; Terminal
+vboxuser@UbuntuFMI:~/ubb/asc$ touch arr.asm
+vboxuser@UbuntuFMI:~/ubb/asc$ as --32 arr.asm -o arr.o
+vboxuser@UbuntuFMI:~/ubb/asc$ ld -m elf_i386 arr.o -o arr
+ld: warning: cannot find entry symbol _start; defaulting to 08049000
+vboxuser@UbuntuFMI:~/ubb/asc$ 
+(gnome-text-editor:2838): Gtk-WARNING **: 16:03:41.931: Trying to snapshot GtkGizmo 0x58b44fc1eec0 without a current allocation
+q
+Command 'q' not found, but can be installed with:
+sudo snap install q                       # version 1.6.3-1, or
+sudo apt  install python3-q-text-as-data  # version 3.1.6-3
+See 'snap info q' for additional versions.
+vboxuser@UbuntuFMI:~/ubb/asc$ as --32 arr.asm -o arr.o
+arr.asm: Assembler messages:
+arr.asm:27: Error: bad register name `%1'
+arr.asm:28: Error: bad register name `%0'
+vboxuser@UbuntuFMI:~/ubb/asc$ as --32 arr.asm -o arr.o
+vboxuser@UbuntuFMI:~/ubb/asc$ ld -m elf_i386 arr.o -o arr
+vboxuser@UbuntuFMI:~/ubb/asc$ gdb arr
+GNU gdb (Ubuntu 15.0.50.20240403-0ubuntu1) 15.0.50.20240403-git
+Copyright (C) 2024 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from arr...
+(No debugging symbols found in arr)
+(gdb) b et_exit
+Breakpoint 1 at 0x804901e
+(gdb) run
+Starting program: /home/vboxuser/ubb/asc/arr 
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) y
+Debuginfod has been enabled.
+To make this setting permanent, add 'set debuginfod enabled on' to .gdbinit.
+
+Breakpoint 1, 0x0804901e in et_exit ()
+(gdb) i r eax
+eax            0x28                40
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 3811] will be killed.
+
+Quit anyway? (y or n) y
+vboxuser@UbuntuFMI:~/ubb/asc$ 

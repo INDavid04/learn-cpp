@@ -1,0 +1,19 @@
+.data
+    x: .long 25
+.text
+.global main
+main:
+    mov $9, %edx
+    mov $2, %eax
+    mov $3, %ebx
+    mul %ebx # se traduce in %eax = %eax * %ebx adica 2 * 3
+    
+    # Presupunem ca avem val in %eax
+    mov x, %ebx
+    mul %ebx # se traduce in %eax = %eax * %ebx adica 6 * 25
+    mull x # se traduce in % eax = %eax * x = 150 * 25
+    
+et_exit:    
+    mov $0, %eax
+    xor %ebx, %ebx
+    int $0x80

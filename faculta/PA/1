@@ -1,0 +1,49 @@
+# baza10in2 n apartine N, baza 10 → baza 2 (a. limbaj; b. functie proprie); x ⇒ a1a2…an in baza 2
+def baza2(nr):
+    b2 = 0
+    p = 1
+    while nr != 0:
+        b2 = b2 + (nr % 2) * p
+        nr = nr // 2 # unde / e rezultat flotant si // e rezultat intreg
+        p = p*10
+        return b2
+
+nr = int(input("Numarul convertit in baza 2 este: "))
+print(f'{baza2(nr)}')
+print(f'Numarul {nr} in baza 2 este: {bin(nr)}')
+
+#generare-submultimi 
+# 1 Generare si generare de submultimi ale multimii {1, 2, …, n}. S = {1, 2, …, n}. Submultime inclusa in Sn ↔ vector caracteristic (sir binar de lungime n) ai: elementul i este in submultime daca si numai daca pe pozitia i in sir este 1. Sa zicem ca avem {1, 2, 3, 4, 5}, {1, 4, 5}
+#   Numarul de mai jos, 10011, in baza 10 este 19
+#   1	0 0	1 1
+#   1	2 3	4 5
+#   Numarul de mai jos, 11111 in baza 10 este 2^5 -1
+#   1	1 1 1 1
+#   1 2 3 4 5
+
+# 2 Generarea tuturor submultimii {1, 2, … n}. Idee: pentru x din {0, 1, 2, … 2^n - 1} (det pozitiile cu 1 in reprezentarea binara a lui x(acesta corespunde unei submultimi)). Cum? Prima varianta ar fi cu % 2 (baza 2). A doua varianta ar fi cu operatori pe biti. Dat x, cum aflam ultimul bit din reprezentarea lui x, folosind operatori pe biti? x & 1 toate elementele din vector 0, doar ultimul fiind 1. Pentru al k-ulea bit (de la dreapta la stanga) x & (1 << (k - 1)) si vedem daca este 0 sau nu este 0. Alta varianta ar fi sa il shiftam la dreapta si ne uitam la ultimul. adica se reduce la pasul anterior, dar pierdem numarul.
+
+# 3 Se da un un x care corespunde unei submultimi. Sa se adauge la submultimea reprezentata de x elementele k (sa se seteze bitul k de la dreapta la stanga din x cu val 1) si sa se elimine adica cu valoarea 0. Deci eu vreau asa: pe pozitia k sa punem pe 2^k.
+
+# 4 Se citeste un sir de n numere naturale cu proprietatea ca toate valorile din sir apar de doua ori cu o singura exceptie: o valoare care apare o singura data. Sa se afiseze acea valoare! Solutia este sa afisam x1 ^ x2 ^ … ^ xn cu XOR ^ (am notat cu x1, x2, … xn sirul dat). De ce face 2^1^4^1^2? Pai 2 cu 2 se anuleaza, la fel si 1 cu 1 si ramane doar 4.
+
+# 5 Interschimbarea a doua variabile x, y folosing xor ^. (Metoda paharelor, suma si diferenta, xor). Deci cu plus si minus, avem x = x + y; y = x; x = x - y; x = x-y; Cu XOR ^, avem x = x ^ y; y = x ^ y; x = x ^ y; Deci y = x^y ie: y = x^y^y si se reduc y, ramanand y = x;
+
+def subm1(n):
+for i in range (0, 1 << n): /* 2**n */
+    nr = bit(i)
+    for j in range(0, n):
+        if (i >> j) & 1:
+            print(f'{j + 1} ', end='')
+    print()
+    
+def subm2(n):
+for i in range (0, 1 << n): /* 2**n */
+    for j in range(0, n):
+        if (1 << j) & 1:
+            print(f'{j + 1} ', end='')
+    print()
+    
+n = int(input("numarul de elemente: "))
+print(f'submultimile cu {n} elemente: ')
+subm1(n)

@@ -1,0 +1,637 @@
+; Suma, diferenta, produsul, catul, restul impartirii lui x la y
+.data
+	x: .long 30
+	y: .long 7
+	suma: .space 4
+	diferenta: .space 4
+	produsul: .space 4
+	catul: .space 4
+	restul: .space 4
+.text
+.globl _start
+_start:
+	// Adunarea
+	mov x, %eax
+	mov y, %ebx
+	add %ebx, %eax
+	mov %eax, suma
+	
+	// Scaderea
+	mov x, %eax
+	mov y, %ebx
+	sub %ebx, %eax
+	mov %eax, diferenta
+	
+	// Inmultirea
+	mov x, %eax
+	mov y, %ebx
+	mul %ebx
+	mov %eax, produsul
+	
+	// Impartirea
+	mov x, %eax
+	mov y, %ebx
+	div %ebx
+	mov %eax, catul
+	mov %edx, restul
+etexit:
+	mov $1, %eax
+	mov $0, %ebx
+	int $0x80
+
+; Terminal
+vboxuser@UbuntuFMI:~$ cd ./ubb/asc/
+vboxuser@UbuntuFMI:~/ubb/asc$ touch operatii.asm
+vboxuser@UbuntuFMI:~/ubb/asc$ as --32 operatii.asm -o operatii.o
+operatii.asm: Assembler messages:
+operatii.asm:9: Error: unknown pseudo-op: `.globl_start'
+vboxuser@UbuntuFMI:~/ubb/asc$ as --32 operatii.asm -o operatii.o
+operatii.asm: Assembler messages:
+operatii.asm:9: Error: unknown pseudo-op: `.globl_start'
+vboxuser@UbuntuFMI:~/ubb/asc$ as --32 operatii.asm -o operatii.o
+vboxuser@UbuntuFMI:~/ubb/asc$ ld -m elf_i386 operatii.o -o operatii
+vboxuser@UbuntuFMI:~/ubb/asc$ gdb operatii
+GNU gdb (Ubuntu 15.0.50.20240403-0ubuntu1) 15.0.50.20240403-git
+Copyright (C) 2024 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from operatii...
+(No debugging symbols found in operatii)
+(gdb) i r
+The program has no registers now.
+(gdb) run
+Starting program: /home/vboxuser/Desktop/ubb/asc/operatii 
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) y
+Debuginfod has been enabled.
+To make this setting permanent, add 'set debuginfod enabled on' to .gdbinit.
+[Inferior 1 (process 3378) exited normally]
+(gdb) i r
+The program has no registers now.
+(gdb) stepi
+The program is not being run.
+(gdb) b _start
+Breakpoint 1 at 0x8049000
+(gdb) i r
+The program has no registers now.
+(gdb) run
+Starting program: /home/vboxuser/Desktop/ubb/asc/operatii 
+
+Breakpoint 1, 0x08049000 in _start ()
+(gdb) i r
+eax            0x0                 0
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x0                 0
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x8049000           0x8049000 <_start>
+eflags         0x202               [ IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) stepi
+0x08049005 in _start ()
+(gdb) i r
+eax            0x1e                30
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x0                 0
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x8049005           0x8049005 <_start+5>
+eflags         0x202               [ IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) stepi
+0x0804900b in _start ()
+(gdb) i r
+eax            0x1e                30
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x7                 7
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x804900b           0x804900b <_start+11>
+eflags         0x202               [ IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) stepi
+0x0804900d in _start ()
+(gdb) i r
+eax            0x1e                30
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x25                37
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x804900d           0x804900d <_start+13>
+eflags         0x212               [ AF IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) i r
+eax            0x1e                30
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x25                37
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x804900d           0x804900d <_start+13>
+eflags         0x212               [ AF IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 3381] will be killed.
+
+Quit anyway? (y or n) y
+vboxuser@UbuntuFMI:~/ubb/asc$ gdb operatii
+GNU gdb (Ubuntu 15.0.50.20240403-0ubuntu1) 15.0.50.20240403-git
+Copyright (C) 2024 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from operatii...
+(No debugging symbols found in operatii)
+(gdb) b _start
+Breakpoint 1 at 0x8049000
+(gdb) i r
+The program has no registers now.
+(gdb) run
+Starting program: /home/vboxuser/Desktop/ubb/asc/operatii 
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) y
+Debuginfod has been enabled.
+To make this setting permanent, add 'set debuginfod enabled on' to .gdbinit.
+
+Breakpoint 1, 0x08049000 in _start ()
+(gdb) i r
+eax            0x0                 0
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x0                 0
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x8049000           0x8049000 <_start>
+eflags         0x202               [ IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) stepi
+0x08049005 in _start ()
+(gdb) i r
+eax            0x1e                30
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x0                 0
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x8049005           0x8049005 <_start+5>
+eflags         0x202               [ IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) i r
+eax            0x1e                30
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x0                 0
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x8049005           0x8049005 <_start+5>
+eflags         0x202               [ IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) stepi
+0x0804900b in _start ()
+(gdb)  i r
+eax            0x1e                30
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x7                 7
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x804900b           0x804900b <_start+11>
+eflags         0x202               [ IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) stepi
+0x0804900d in _start ()
+(gdb) i r
+eax            0x1e                30
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x25                37
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x804900d           0x804900d <_start+13>
+eflags         0x212               [ AF IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 3407] will be killed.
+
+Quit anyway? (y or n) y
+vboxuser@UbuntuFMI:~/ubb/asc$ as --32 operatii.asm -o operatii.o
+vboxuser@UbuntuFMI:~/ubb/asc$ ld -m elf_i386 operatii.o -o operatii
+vboxuser@UbuntuFMI:~/ubb/asc$ gdb operatii
+GNU gdb (Ubuntu 15.0.50.20240403-0ubuntu1) 15.0.50.20240403-git
+Copyright (C) 2024 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from operatii...
+(No debugging symbols found in operatii)
+(gdb) b _start
+Breakpoint 1 at 0x8049000
+(gdb) run
+Starting program: /home/vboxuser/Desktop/ubb/asc/operatii 
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) y
+Debuginfod has been enabled.
+To make this setting permanent, add 'set debuginfod enabled on' to .gdbinit.
+
+Breakpoint 1, 0x08049000 in _start ()
+(gdb) i r
+eax            0x0                 0
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x0                 0
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x8049000           0x8049000 <_start>
+eflags         0x202               [ IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) stepi
+0x08049005 in _start ()
+(gdb) stepi
+0x0804900b in _start ()
+(gdb) i r
+eax            0x1e                30
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x7                 7
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x804900b           0x804900b <_start+11>
+eflags         0x202               [ IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) stepi
+0x0804900d in _start ()
+(gdb) i r
+eax            0x25                37
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x7                 7
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x804900d           0x804900d <_start+13>
+eflags         0x212               [ AF IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) stepi
+0x08049012 in _start ()
+(gdb) i r
+eax            0x25                37
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x7                 7
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x8049012           0x8049012 <_start+18>
+eflags         0x212               [ AF IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) stepi
+0x08049017 in _start ()
+(gdb) i r
+eax            0x1e                30
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x7                 7
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x8049017           0x8049017 <_start+23>
+eflags         0x212               [ AF IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) stepi
+0x0804901d in _start ()
+(gdb) i r
+eax            0x1e                30
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x7                 7
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x804901d           0x804901d <_start+29>
+eflags         0x212               [ AF IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) stepi
+0x0804901f in _start ()
+(gdb) i r
+eax            0x17                23
+ecx            0x0                 0
+edx            0x0                 0
+ebx            0x7                 7
+esp            0xffffd030          0xffffd030
+ebp            0x0                 0x0
+esi            0x0                 0
+edi            0x0                 0
+eip            0x804901f           0x804901f <_start+31>
+eflags         0x206               [ PF IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x0                 0
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 3428] will be killed.
+
+Quit anyway? (y or n) y
+vboxuser@UbuntuFMI:~/ubb/asc$ as --32 operatii.asm -o operatii.o
+vboxuser@UbuntuFMI:~/ubb/asc$ ld -m elf_i386 operatii.o -o operatii
+vboxuser@UbuntuFMI:~/ubb/asc$ gdb operatii
+GNU gdb (Ubuntu 15.0.50.20240403-0ubuntu1) 15.0.50.20240403-git
+Copyright (C) 2024 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from operatii...
+(No debugging symbols found in operatii)
+(gdb) b _start
+Breakpoint 1 at 0x8049000
+(gdb) run
+Starting program: /home/vboxuser/Desktop/ubb/asc/operatii 
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) y
+Debuginfod has been enabled.
+To make this setting permanent, add 'set debuginfod enabled on' to .gdbinit.
+
+Breakpoint 1, 0x08049000 in _start ()
+(gdb) i r eax
+eax            0x0                 0
+(gdb) stepi
+0x08049005 in _start ()
+(gdb) i r eax
+eax            0x1e                30
+(gdb) stepi
+0x0804900b in _start ()
+(gdb) i r ebx
+ebx            0x7                 7
+(gdb) stepi
+0x0804900d in _start ()
+(gdb) stepi
+0x08049012 in _start ()
+(gdb) i r eax
+eax            0x25                37
+(gdb) stepi
+0x08049017 in _start ()
+(gdb) stepi
+0x0804901d in _start ()
+(gdb) stepi
+0x0804901f in _start ()
+(gdb) i r eax
+eax            0x17                23
+(gdb) stepi
+0x08049024 in _start ()
+(gdb) stepi
+0x08049029 in _start ()
+(gdb) i r eax
+eax            0x1e                30
+(gdb) i r ebx
+ebx            0x7                 7
+(gdb) stepi
+0x0804902f in _start ()
+(gdb) i r eax
+eax            0x1e                30
+(gdb) stepi
+0x08049031 in _start ()
+(gdb) i r eax
+eax            0xd2                210
+(gdb) i r ebx
+ebx            0x7                 7
+(gdb) stepi
+0x08049036 in _start ()
+(gdb) stepi
+0x0804903b in _start ()
+(gdb) stepi
+0x08049041 in _start ()
+(gdb) i r eax
+eax            0x1e                30
+(gdb) i r ebx
+ebx            0x7                 7
+(gdb) stepi
+0x08049043 in _start ()
+(gdb) i r eax
+eax            0x4                 4
+(gdb) i r edx
+edx            0x2                 2
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 3610] will be killed.
+
+Quit anyway? (y or n) y
+vboxuser@UbuntuFMI:~/ubb/asc$ gdb operatii
+GNU gdb (Ubuntu 15.0.50.20240403-0ubuntu1) 15.0.50.20240403-git
+Copyright (C) 2024 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from operatii...
+(No debugging symbols found in operatii)
+(gdb) b etexit
+Breakpoint 1 at 0x804904e
+(gdb) run
+Starting program: /home/vboxuser/Desktop/ubb/asc/operatii 
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) y
+Debuginfod has been enabled.
+To make this setting permanent, add 'set debuginfod enabled on' to .gdbinit.
+
+Breakpoint 1, 0x0804904e in etexit ()
+(gdb) print (long) rest
+No symbol "rest" in current context.
+(gdb) print (long) restu
+No symbol "restu" in current context.
+(gdb) print (long) restul
+$1 = 2
+(gdb) print (long) catul
+$2 = 4
+(gdb) print (long) diferenta
+$3 = 23
+(gdb) print (long) adunarea
+No symbol "adunarea" in current context.
+(gdb) print (long) suma
+$4 = 37
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 3627] will be killed.
+
+Quit anyway? (y or n) y
+vboxuser@UbuntuFMI:~/ubb/asc$ 

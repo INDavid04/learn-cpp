@@ -1,0 +1,218 @@
+# palindrom
+n, reversedN = 500, 0
+copyN = n
+while copyN > 0:
+    lastDigit = copyN % 10
+    reversedN = reversedN * 10 + lastDigit
+    copyN //= 10
+if n == reversedN:
+    print(True)
+else: 
+    print(False)
+    
+# cmmdc
+L1, L2 = 440, 280
+copyL1, copyL2 = L1, L2
+
+while copyL2 != 0:
+    r = copyL1 % copyL2
+    copyL1 = copyL2
+    copyL2 = r
+print(f'l = {copyL1}, nr de placi = {L1 * L2 // (copyL1 ** 2)}')
+
+# minimFibDinInterval
+a, b = 17, 37
+for i in range (0, 100):
+    if i >= a and i <= b or i % 5 != 0:
+        continue
+    print(i)
+    
+for i in range(99, -1, -1):
+    if i >= aand i < @T
+
+# puteriDoiInterval -> Problema 9 din Laborator 2
+# Un numar este multiplu de 2 daca in reprezentarea binara este un multiplu de doi
+a, b = 10 , 100
+for i in range(a, b + 1):
+    copyI = i 
+    while copyI != 0:
+        if copyI & 1 == 1:
+            numberOfActiveBits += 1
+        copyI >>= 1
+        
+    if numberOfActiveBits == 1: # atunci numarul este putere a lui 2 
+        print(i)
+        
+### Problema 19 din Laboratorul 2 - Cifre unice
+# - https://leetcode.com/problems/count-numbers-with-unique-digits/description/
+# - n = 0 ⇒ 1 (n = 1 rezulta numarul poate luat 10 variante)
+# - n = 2 ⇒ 91 (numarul ab poate luat 9*9 = 81 variante)
+# - n = 3 avem numarul abc, unde a, b, c iau 9, 9, 8 variante ie: a poate lua valori din (1, 2,, …, 9) si b din {1, 2, …,  9} \ {a}, c poate lua {1, 2, …,  9} \ {a, b}. Conform regulii produlusului, avem 9 * 9 * 8 = 648 numere. Nu e suficient pentru ca mai avem numere si de doua cifre. Si astfel, solutia finala pentru n = 3 este 648 + 81 + 10 = 739
+# - n din (0, 8] inclus in N
+# - Intuitia de cum au ajuns astia la 91?
+
+if n == 0:
+	return 1 # daca nu facem cu functii print(1) si exit(0)
+
+if n == 1
+	return 10
+
+total numbers, digit_compute = 10, 9
+
+for i in range (2, n+1):
+	digit_compute *= (10 - i + 1)
+	total_numbers += digit_compute
+
+return total_numbers # daca nu facem cu functii print(total_numbers; exit(0)<OPT>)
+
+### Problema 18 din Laboratorul 2 - Zero factorial
+
+# - https://leetcode.com/problems/factorial-trailing-zeroes/description/
+# - n din [0, 10^4] intersectat in N
+# - numarul de “0” care apar in n!
+# - 10! = 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 (pe 10 il scriem ca 2 * 5)
+# - 26! = 1 * 2 * 3 * 4 * (5) * … * (10 = 2*5) * … * (15 = 3*(5)) * … * (20=4*(5)) * … * 25=((5)*(5)) * … * (30=6*(5)) => 7
+# - n = 30 // 5 => n = 6; 6 /= 5 = 1; 1 /= 5 = 0
+
+while n!=0:
+	n//5
+	counter += n
+return counter
+
+# Curs2 - Secvente
+
+x = y = 2
+print(id(x), id(y))
+x, y = 1, 2
+print(x, y)
+x, y = y, x # de tupluri dreapta => tuplu, nu este echivalent cu x = y, y = x
+print(x, y)
+
+# if ... elif ... else
+# ultima cifra a lui 3**k
+k = 8
+if k%4 == 0:
+    print(1)
+elif k%4 == 1:
+    print(3)
+elif k%4 == 2:
+    print(9)
+else:
+    print(7)
+    
+# while
+# for
+# for var in secventa
+s = "abc"
+for litera in s:
+    print(litera)
+# range:
+"""
+range(n) -> 0, 1, ..., n - 1
+range(a, b) -> a, a + 1, ..., b - 1
+range(a, b, pas)
+"""
+print(list(range(10, 1, -1)))
+# are si break, continue
+# Exista instructiunea else si pentru structuri repetitive si se executa daca nu s-a iesit cu break
+
+"""
+Sa se afiseze primul divizor propriu al lui n
+"""
+
+n = 25
+for i in range(2, n**0.5):
+    if n%i == 0:
+        print(i)
+        break
+    else:
+        print("nu are divizori proprii")
+
+# pass
+for i in range(0, 4):
+    print(i)
+    i = i + 1
+
+# Pentru s = [P, r, o, g, r, a, m, a, r, e, a], s[0] = 'P', s[-1] = 'a' adica ultima cifra. In cazul in care dam valori in afara sirului, spre exemplu daca folosim s[-11] vom avea o eroare! Daca scriem print(s[7:9]) afiseaza "are" s[::-1], unde -1 este pasul si cele doua perechi de doua puncte vin de aici: a:b:pass unde am lasat liber a si b
+
+def print_message(num_oftimes) {
+    for i in range(num_of_times) {
+        print("Bython is awesome!");
+    }
+    
+    if __name__ == "__main__" {
+        print_message(10);
+    }
+}
+
+# Dupa pauza, cautarea:
+s = "programarea"
+print("a" in s)
+print(s.count("a"))
+print(s.count("a", 6)) # numara incepand de la pozitia 5
+print(s.count("a", 6, 10)) # numara incepand de la pozitia 5 pana la 9
+
+# pozitii
+p = s.index("a")
+print(f"prima pozitie {p}")
+p = s.index("a", p + 1)
+print(f"a doua pozitie {p}")
+try:
+    p = s.index("b")
+    print(f"prima pozitie {p}")
+except ValueError:
+    pass
+print("ok")
+
+# Exercitiu: Sa se afiseze toate pozitiile in care apare "a" in s
+p = s.index("a")
+try:
+    while True:
+        print(p)
+        p = s.index("a", p + 1)
+except:
+    pass
+# Doar pentru siruri vom folosi find care returneaza -1 daca elementul nu este gasit
+p = s.index("a")
+while p != -1:
+    print(p)
+    p = s.find("a", p + 1)
+# La fel, doar pentru siruri, rfind si rindex cauta de la dreapta la stanga ie: ultima aparie
+p = s.rfind("a")
+print("ultima pozitie {p}")
+
+# Concatenari => obiect nou
+s = s[:3] + " " + s[5:] # concateneaza secventa pana la pozitia 3 cu secventa de la pozitia 5
+print(s)
+
+n = 7
+s = "a" * n
+print(s) # afiseaza aaaaaaa
+v = [0] * n
+print(v) # afiseaza [0, 0, 0, 0, 0, 0, 0]
+
+# Sorted care returneaza lista
+v = [9, 4, 6, 7]
+v_sortat = sorted(v)
+print(v_sortat, v)
+s = "mare"
+s_sortat = sorted(s)
+print(s_sortat, s)
+
+# Doar pentru siruri de caractere e important sa stim cum se fac unificari si separari
+# separator.join(secventa_de_cuvinte)
+ls = ["programarea", "algoritmilor", "seria", "14"]
+s = "-".join(ls) # pune intre cuvinte separatorul "-", putea sa fie orice, eg: spatiu
+print(ls)
+print(s)
+cuv = "".join(s_sortat)
+print(cuv) # adica aemr
+
+# sir.split(separator) -> lista de cuvinte
+# Daca nu se specifica separatori avem caractere albe
+s = "programarea algorimilor seria 14"
+ls = s.split()
+print(ls) # afiseaza ['programarea', 'algorimilor', 'seria', '14']
+ls = s.split(" ") # afiseaza ['programarea', 'algorimilor', '', '', '', 'seria', '14']
+print(ls)
+print(" ".join)

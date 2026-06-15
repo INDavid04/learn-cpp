@@ -1,0 +1,76 @@
+# 1. Se citeste o propozitie cu cuvintele separate prin spatii (unul sau mai multe). Sa se creeze o lista cu cuvintele care incep cu o vocala (folosind si comprehensiune).
+x = "Astazi este laboratorul                de            liste          la PA"
+resulted_words = []
+# print(x.split())
+words = x.split()
+for word in words:
+    if word[0].lower() in "eaiou":
+        resulted_words.append(word)
+print(*resulted_words, sep = "\n")
+# print("Astazi"[0].lower())
+resulted_words_comp = [word for word in words if word[0].lower() in "aeiou"]
+print(*resulted_words_comp, sep = " ") 
+
+# 2. Cifrul lui Cezar - folosind comprehensiune
+decrypted = "CIFRUL LUI CEZAR"
+crypted = [chr(ord("A") + ord(c) - ord("A") + 1) for word in decrypted.split() for c in word]
+print(crypted)
+
+#3. Pasareasca - traducerea in limba pasareasca folosind comprehensiune: Se citeste de la tastatura un text. Se cere sa se traduca in limba pasareasca textul dat astfel: dupa fiecare vocala se adauga litera p si inca o data acea vocala (dupa a, e, i, o, u se adauga respectiv pa, pe, pi, po, pu). Exemplu: Ana are mere. devine Apanapa aparepe meperepe.
+x = "Ana are mere"
+translation = [(c + "p" + c.lower()) if c.lower() in "aeiou" else c for c in x]
+print(*translation, sep="")
+
+#4. Sa se genereze lista literelor Ã®n lowercase de la a la z (folosind ord, chr, comprehensiune). Pentru un numar natural n citit de la tastatura, sa se genereze lista de forma 1, -2, 3, -4, ... pÃ¢na la n (cu semnul corespunzator).
+# ord('A') = 65 si chr(65) = 'A'
+# @TODO;
+
+### Operatii cu liste
+l1, l2 = [1, 2, 3], [4, 5, 6]
+l1[1::2] = l2[1::2]
+print(l1)
+
+#11. Dată o listă de numere naturale și un număr k, propuneți mai multe modalități de a șterge primele k elemente din listă.
+k = 1
+l = [1, 2, 3, 4, 5, 6, 7]
+l = [l[i] for i in range(len(l)) if i >= k]
+# Putem sa facem si cu o functie?
+while k != 0:
+    k -= 1
+    l.pop(0)
+print(l)
+# Sau cu remove cu l[0]?
+
+#12. Se dă o listă de numere naturale. Să se șteargă din listă subsecvența delimitată de primele două zerouri din listă (inclusiv zerourile).
+l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+try:
+    first_zero = l.index(0)
+    second_zero = l.index(0, start=first_zero + 1)
+    l[:second_zero + 1] = l[:first_zero]
+    print(l)
+except:
+    print("Lista nu are zerouri")
+
+#13. Se dă o listă de numere naturale. Să se șteargă din listă toate zerourile.
+try:
+    while True:
+        index_zero - l.index(0) # <=> zero_i = l.index(0) l.pop(zero_i) sau l.remove(0)
+        l.pop(index_zero)
+except:
+    print(l)
+
+#15. Se dă o listă de numere naturale ordonată crescător (toate elementele sale se vor da pe o linie separate prin spațiu). Să se elimine duplicatele din listă.
+x = input().split() # Returneaza lista de STR!
+x = [int(el) for el in x]
+x_without_duplicates = [el for el in x if x.count(el) <= 1]
+print(*x_without_duplicates)
+
+#16. Se dă o listă de numere reale (toate elementele sale se vor da pe o linie separate prin spațiu). Să se insereze câte un 0 după fiecare element negativ (fără a folosi liste suplimentare).
+l = [-2.345, 1, 3.4, -3, 50]
+for i in range(len(l)):
+    current_element = l[i]
+    if current_element < 0:
+        l.insert(i + 1, 0)
+print(l)
+# Cu list comprehension? NU PREA
+# l = [l.extend([x, 0]) if x < 0 else l.extend([x]) for x in l]

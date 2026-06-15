@@ -1,0 +1,13 @@
+### Arrays & fisiere
+# 
+for i in range(n):
+    lista = []
+    for j in range(1, n + 1):
+        lista.append(i * n + j)
+    M.append(lista)
+# care inseamna M = [[0] * n] * n si n = 3 sa zicem
+for i in range(n):
+    for j in range(1, n + 1):
+        M[i][j] = i * n + j
+# List comprehension
+M = [[i * n + j for j in range(1, n + 1)] for i in range(n)]

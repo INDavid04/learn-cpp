@@ -1,0 +1,11 @@
+Prelucrari statistice asupra bazelor de date {
+    1. Numararea articolelor
+    COUNT [<domeniu>][FOR <expresie1>][WHILE <expresie2>][TO <variabila>]
+
+    Ex1: Sa se afiseze numarul produselor din cadrul unui depozit, a caror valoare depaseste 100 de lei. Baza de
+    date "situatia.dbf" are urmatoarea strucutra: denumire (0, 10), nrinv(N, 3), descriere(memo), valoare(N, 7)
+    
+    use situatia
+    count for valoare > 100 to nr
+    ? 'in baza de date avem ', nr, 'produse cu valoarea mai mare de 100 de lei'
+}

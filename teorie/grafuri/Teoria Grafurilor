@@ -1,0 +1,197 @@
+old theory {
+    Definitii {
+        Un graf G este CONEX daca oricare ar fi doua varfuri ale sale exista un lant care le leaga.
+    }
+
+    Graf_Subgraf {
+        ciclu elementar - te intorci de unde ai plecat
+        graf partial - stergem doar muchiile
+        subgraf - stergand nodul stergem si muchia
+    
+        Eliminand:
+            muchii --- graf partial
+            noduri --- sugraf
+    }
+    
+    Tipuri de grafuri { 
+        1. Graf plin
+        
+        2. Graf orientat complet: un graf orientat in care exista (x,y) si (y,x)
+        n*(n-1)/2 <= m <= n*(n-1)
+        Numarul de grafuri orientate complete cu n noduri este 3^((n*(n-1))/2)
+        
+        
+        3. Graf turneu: un graf orientat in care exista un singur  arc intre oricare doua noduri x si y.
+        Numarul de grafuri turneu cu n noduri este 2^((n*(n-1))/2)
+        
+        4. Graf orientat tare conex: oricare ar fi doua noduri x si y exista drum dus-intors de la x la y
+        (exista un circuit, nu neaparat elementar, care trece prin arcele grafului).
+        
+        5. Componenta tare conexa a unui graf orientat: un subgraf tare conex si maximala in raport cu
+        aceasta proprietate. Un nod izolat este o componenta tare conexa.
+    }
+    
+    Exemple {
+        1. Numarul de grafuri complete cu 10 noduri este: 3^(10*9/2) = 3^45
+        2. Numarul de grafuri turneu ce 5 noduri: 2^(5*4/2) = 2^10 = 1024
+        3. G este un graf plin cu 20 de noduri (exista arce dus-intors)
+           Numarul de arce: 20*19 = 380
+    }
+    
+    Observatii {
+        Un graf bipartit nu poate contine un ciclu de lungime impara
+        Nr de muchii intr-un graf neorientat complet este: (n*(n-1))/2
+        Nr grafuri neorientate cu n varfuri: 2^((n*(n-1))/2)
+        Nr grafuri partiale peste un graf cu m muchii: 2^m
+        Un graf neorientat complet cu n varfuri (n=impar) este hamiltonian si eulerian
+        Un graf neorientat complet cu n varfuri (n=par) este hamiltonian dar nu si eulerian
+    }
+}
+
+terminologie {
+    adiacenta (nodurile ce formeaza o muchie) {
+        U = {[a,b], [a,d], [c,d]} /// https://www.ezinfo.ro/images/svgs/graf1.svg
+        nodul a = adiacent cu nodurile d si b
+        nodul b = adiacent cu nodul a
+        nodul e != adiacent cu niciun nod
+    }
+    
+    incidenta (muchii cu o extremitate comuna) {
+        muchia [a,d] = incidenta cu [c,d] /// d - vf comun
+        muchia [a,b] != incidenta cu [c,d]
+        nodul a = incident cu [a,d] si [a,b]
+        nodul a != incident cu [c,d] /// a nu e extremitatea [c,d]
+    }
+    
+    gradul (nr vf adiacente unui nod sau muchii incidente) {
+        gradul nodului x: d(x) ia valori din intervalul [0,n)
+        d(a) = d(d) = 2
+        nod izolat: d(x) = 0
+        d(e) = 0 este un nod izolat
+    }
+    
+    OBSERVARII {
+        Adiacenta se refera strict la nodurile ce au legaturi directe prin muchii
+        Incidenta se refera la muchiile(+nodurile) care au o extremitate comuna
+        Gradul se refera la numarul muchiilor ce intra/ies dintr-un nod
+    }
+}
+
+graf neorientat (G(X,U), multimea X cu n noduri, multimea U cu m muchii [x,y] || [y,x]) {
+    proprietati {
+        comb de n luate 2 sau n*(n-1)/2 = nr max muchii din graful neorientat cu n noduri 
+        d(nodurilor) = 2*muchii (suma gradelor nodurilor e dublul nr de muchii)
+        2*comb de n luate 2 = nr graf neor cu n vf
+        [(n+1)/2] = nr min de muchii ai: graful NU contine vf izolate
+        (comb n-1 luate 2)+1 = nr max ai: graful NU contine vf izolate 
+    }
+
+    conexitate {
+        lant (succesiune de varfuri) {
+            elementar: nu se trece prin acelasi nod de 2  ori
+            neelementar: se pot repeta NODURILE
+            simplu: nu se repeta nicio muchie
+            compus: se pot repeta MUCHIILE
+            lungimea: NR MUCHIILOR lantului
+        }
+        
+        ciclu (lant simplu, primul nod coincide cu ultimul) {
+            elementar: noduri diferite 2 cate 2, exceptand primul si ultimul nod
+            aciclic: fara cicluri, orice lant simplu este elementar
+        }
+        
+        graf conex (exista un lant intre oricare 2 noduri) {
+            graf cu n noduri => nr min muchii n-1
+            graf partial conex => eliminam maxim m-(n-1) muchii cv
+            comp conexa: subgraf maximal raportat la conexitate
+            nodul izolat este o comp conexa
+            un graf cu n noduri are maxim n comp conexe
+            graful conex e format dintr-o singura comp conexa
+            graful neor cu p comp conexe are nevoie de p-1 muchii pentru a fi graf conex
+        }
+    }
+    
+    tipuri {
+        graf partial: elimin muchii, aceleasi noduri, nr total: 2^m
+        subgraf: elimin noduri, impreuna cu muchiile respective, nr total: 2^n - 1
+        
+        graf complementar: nodurile grafului principal, muchiile LIPSA, (opusul), suma totala muchiilor: comb n luate 2 
+        graf nul: fara nicio muchie, n noduri => n comp conexe
+        graf complet: cu toate muchiile posibile, n*(n-1)/2 noduri, grade maxime (n-1), e conex, eulerian, hamiltonian
+        
+        graful hamiltonian: are un ciclu hamiltonian (parcurge toate nodurile, poligon)
+        ciclu hamiltonian: ciclu elementar cu toate NODURILE graf, pot fii mai multe
+        TEOREMA: graf hamiltonian => gradul fiecarui nod >= n/2 (fara reciporca)
+        
+        graful eulerian: are un ciclu eulerian (pargurge toate muchiile)
+        ciclu eulerian: contine toate muchiile
+        TEOREMA: muchiile se afla in aceeasi comp conexa si are toate gradele pare
+    }
+}
+
+graf orientat (G(X,E), n noduri, m arce) {
+    proprietati {
+        nr max arce = arnajamente n luate 2 = n*(n-1)
+        suma gradelor nodurilor = 2*nrArce
+        nr grafuri = 2^(aranjamente n luate 2) = 2^(n*(n-1))
+        
+        matricea de adiacenta {
+            suma elem de pe linie = d+ (gradul exterior)
+            suma elem de pe coloana = d- (gradul interior)
+            suma elem din matrice = m
+            diag princ = 0 (toate elem sunt 0)
+        }
+    }
+    
+    conexitate {
+        drum (succesiune de noduri) {
+            simplu: nu se repeta niciun arc
+            compus: se pot repeta unele arce de mai multe ori
+            elementar: nu se trece prin acelasi nod de 2 ori
+            neelementar: se pot repeta nodurile
+            lungimea este data de nr arcelor
+        }
+        circuit (drum cu primul si ultimul nod identice) {
+            elementar: se repeta doar primul si ultimul nod
+            neelementar: se repeta mai multe noduri
+        }
+        prop tare conexitate (avem drum dus-intors intre comp conexe) {
+            graf tare conex: exista cel putin un drum de la x la y si invers
+            graf conex: gasim un lant ce leaga nodurile, cu o singura directie
+        }
+        comp tare conexa (sugraf cu prop de tare conexitate) {
+            fie un singur nod (nodul este considerat componenta tare conexa)
+            fie o sigura comp tare conexa
+            fie mai multe componente tare conexe
+        }
+    }
+    
+    tipuri {
+        graf partial: aceleasi noduri, mai putine arce, nr max Gpart: 2^m
+        subgraf: eliminand noduri, elimini muchii, nr max subG: 2^(n-1) 
+    }
+}
+
+arbori (graf conex aciclic) {
+    terminnologie {
+        NOD TERMINAL: radacina/frunza, are gradul 1, extremitatea
+        FRUNZA: noduri terminale, fara radacina, capetele arborelui
+        DESCENDENT: nodul de pe urmatorul nivel
+        DESCENDENT DIRECT/FIU: nodul urmator se leaga direct, printr-o muchie la nodul la care ne referim
+        ASCENDENT: nodul de pe nivelurile anterioare ale ramurii
+        ASCENDENT DIRECT/TATA: nodul anterior se leaga direct la nodul la care ne referim
+        FRATE: nodul cu acelasi tata/ascendent direct
+    }
+    proprietati {
+        Un arbore cu n noduri are n-1 muchii (conex minimal, aciclic maximal)
+        Pentru a obține arborele cu cea mai mare înălțime, vom căuta cel mai lung lanț elementar 
+        și vom alege una din extremități ca rădăcină. Pentru înalțimea minimă, 
+        vom alege un nod din mijlocul celui mai lung lanț elementar.
+    }
+    vectorul de tati {
+        Pentru i de la 1 la cate noduri are arborele, salvam pe pozitia i numarul nodului ce este tata pentru nodul i
+        Radacina memoreaza valoare 0 (tatal radacinii este nodul zero)
+        Nodurile care nu apar in vector sunt frunze (nu sunt tata niciunui nod)
+        d(n) = nrAparitii + 1 (+1 legatura cu ascendentul)
+    }
+}

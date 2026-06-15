@@ -1,0 +1,225 @@
+### Conditie 10
+# <conditie> = True / False
+
+x = 10
+if x %2 == 0 and x > 5:
+	print(x)
+x = 10
+if x % 2 == 0:
+	print(x)
+elif x % 3 == 0:
+	print(x, "multiplu de 3")
+else:
+	print("nu stiu nimic despre x")
+	
+# Structura repetitiva cu numar finit de pasi <-> pentru / for
+
+# Recap: range(start, stop, <OPT>step) unde opt vine de la optional
+for i in range(1, 10, 3):
+	print(i)
+# nu exista structura repetitiva cu test final, acel do while din C++ cu test initial
+# daca <conditie> ramane True atunci while-ul continua sa executte operatiile din interiorul sau
+print ("while")
+n = 5
+while n > 0:
+	n -= 1 # n = n - 1, n op = baloare <=> n = n op valoare
+	print(n)
+for i in range (1, 11):
+	if i % 2 == 0 or i <= 5:
+	continue
+	print(i)
+	break
+	
+# Seminar 3
+// for i in range(10) este asemanator cu i apartine multimii {1, 2, …,  9}
+
+for i in range(10):
+    print(i, end = " ")
+    i = 3
+    print(i, end = " ")
+    
+// 4. Fie n numar natural pozitiv. de afisat descompunerea lui n ca suma de termeni distinci din sirul lui Fibonacci care nu contine ca termeni doua numere Fibonacci consecutive. Exista mereu o astfel de descompunere?
+// Inductie pentru oricare n exista descompunerea
+// Fie Fk cel mai mare numar Fibonacci cu Fk <= n < Fk+1
+// Exista o descompunere pentru n - Fk
+// Deoarece n - Fk < Fk+1 - Fk = F-1, rezulta ca termenii din n - Fk sunt mai mici decat k-1
+n = int(input())
+a = 1
+b = 1
+while b <= n:
+    a,b=b,a+b
+print(a, end=" ")
+n -= a
+while n != 0:
+    a,b=b-a,a
+    if a<=n:
+        print(a, end=" ")
+        n -= a
+        
+// 5. Se citeste un numar n si un sir de n numere naturale. Sa se afiseze cel mai mic si cel mai mare nuamr din sir (folosind un numar minim de operatii de comparare)!
+// Le grupam doua cate doua si comparam minimul cu maximul - perechi de cate doua.
+n = int(input())
+if n % 2 == 0:
+    x = int(input())
+    y = int(input())
+    if x > y:
+        maxim, minim = x, y
+    else:
+        maxim, minim = y, x
+else:
+    x = int(input())
+    minim = maxim = x
+    start = 1
+for i in range (start, n + 1, 1):
+    x = int(input())
+    y = int(input())
+    if x > y:
+        if x > maxim:
+            maxim = x
+        if y < minim:
+            minim = y
+    else:
+        if y > maxim:
+            maxim = y
+        if x < minim:
+            minim = x
+print(f"Minimul este {minim}, maximul este {maxim}")
+
+// 6. Se citeste un cuvant s. Sa se verifice daca s este palindrom sau semipalindrom(format din doua jumatati egale)
+
+// 11. Sir periodic
+s = input()
+t = ""
+for i in range(len(s) // 2 + 1, -1, -1):
+    if len(s) % i != 0:
+        continue
+    t = s[:i] * (len(s) // i) # "ab" * 2 -> "abab"
+    if t == s:
+        print(f"Sirul {s} se obtine prin concatenarea lui {s[:i]} de {len(s)} // i ori")
+        break
+    else:
+        print(f"Nu este periodic sirul {s}")
+
+// 10. Afisarea cuvintelor care rimeaza. De exemplu, pentru w = "mere", p = 2, n = 4 si cuvintele "pere", "teste", "are" si "programare", trebuie sa fie afisate cuvintele "pere" si "programare" ("are" rimeaza cu "mere" dar are lungime mai mica decat p + 2)
+x = input()
+y = input()
+z = input()
+p = int(input())
+if x[-p:] == y[-p:]:
+    print(y)
+if x[-p:] == z[-p:]:
+    print(z)
+// up
+x = input()
+p = int(input())
+n = int(input())
+
+while n>0:
+    z = input()
+    if x[-p:] == z[-p:] and len(z) >= p+2:
+        print(z)
+    n -= 1
+// la clasa
+imprt re // re este modulul de expresii regulate (acel split)
+w = input("cuv: ")
+p = int(input("nr litere: "))
+a = input("propozitie: ")
+print(f"{p}-rimele cuvantului \'{a}' sunt: ", end="")
+a = a.split("") // sau a = a.replace(",")
+for i in a:
+    if suf == i[-p:]:
+        print(i, end=" ")
+        
+# Siruri - continuare
+# split -are si parametrul maxsplit = cate impartire sa faca maxim
+p = "acesta este un exemplu"
+lp = p.split(" ")
+print(lp)
+lp = p.split(" ", maxsplit = 1)
+print(lp)
+
+# exemplu - pe o linie de forma nume nota. Sa se afiseze varsta pe o linie, numele pe alta
+p = "Marinescu Ghemeci Ruxandra 36"
+lp = p.rsplit(maxsplit = 1)
+
+# exemplu coordonatele carteziene si eticheta
+p = "3 7 acesta este un punct in plan"
+ls = p.split(maxsplit = 2)
+x = int (ls[0])
+y = int (ls[1])
+eticheta = ls[2]
+print(f"({x},{y} are \" eticheta {eticheta}\"")
+print(f'({x},{y} are " eticheta {eticheta}"')
+
+# ord, chr
+# caractere UNICODE
+# Modificari rezulta obiect nou
+# s = s.replace(sect, sect_noua, cate_aparitii) - v.laborator
+s = "un exemplu"
+s1 = s.replace("u", "") # sterge toate literele u
+print(s1)
+s2 = s.replace("u", "", 1) # sterge doar o litera u
+print(s2)
+
+# Scurt exemplu pentru adresele a doua siruri
+x = "am mancat"
+y = "am " + "mancat"
+print(x, y, id(x), id(y)) # valori egale
+z = input()
+w = "am " + z
+print(x, y, id(x), id(w)) # valori diferite pentru ca la citire se face zona de memorie noua
+
+/* Liste
+clasa list - vector (array)
+eliminarea primului element -> O(n)
+*/
+
+ls = [1, "abc", [3,4]] # imbricate, pot fi neomogene
+m = [[2,3], [4, 5]]
+
+# lista vida
+ls = []
+ls = list()
+
+# list(iterabil) -> lista (cu fiecare element din iterabil)
+ls = list(range(6))
+ls = list("un cuvant") # sir elemnt = o litera
+print(ls) # lista de litere
+
+# Listele se pot initializa cu comprehenisune (list comprehension)
+# Exercitiu: Sa facem o lista cu primele n patrate perfect
+n = 5
+ls = []
+for i in range(1, n + 1):
+    ls.append(i * i) # adaugam un element la finalul listei - append
+    print(ls)
+    
+# ls = [expresie for element in iterabil]
+ls1 = [i*i for i in range(1, n+1)]
+print(ls1)
+
+# Sa se creeze un vector cu n elemente egale cu 0
+v = [0]*n
+print(v)
+v = []
+for i in range(n):
+    v.append(0)
+v = [0 for i in range(n)]
+v[0] = 3
+print(v)
+
+# Sa se citeasca un vector de numere intregi cu elementele date pe o linie (9 0 23 4 7)
+v =  input().split()
+print(v)
+for i in range(len(v)):
+    v[i] = int(v[i])
+print(v)
+# aside
+# for x in v:
+#     x = int(x) # nu se modifica v
+# with comprehension
+v = [int(x) for x in input().split()]
+print(v)
+# citim 2 numere pe aceeasi linie
+m, n - [int(x) for x in input("dati doua numere ").split()]
+print(m+n)
